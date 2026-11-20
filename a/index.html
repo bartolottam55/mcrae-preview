@@ -1,0 +1,461 @@
+<title>McRae Yard Maintenance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Karla:wght@400;500;600;700&display=swap">
+
+<style>
+/* Layout: photography carries every dark section -- no flat panels. Navy and
+   chartreuse pulled straight from the McRae logo. Mown stripes are the rule
+   motif. Committed single identity: this is a brand site, palette is fixed. */
+:root{
+  color-scheme: dark;
+  --navy:#071D36;          /* logo navy, seated slightly deeper */
+  --navy-2:#0D2B4D;
+  --navy-glass:rgba(7,29,54,.80);
+  --lime:#90DA0A;          /* logo chartreuse */
+  --lime-2:#B6EE3A;
+  --paper:#F1F4EE;
+  --white:#FFFFFF;
+  --slate:#52677C;         /* navy-tinted secondary text on light */
+  --line:#D6DEE3;
+  --ink:#0B1B2B;
+
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --body:'Karla','Segoe UI',system-ui,sans-serif;
+  --wrap:1180px;
+  --gutter:clamp(20px,5vw,56px);
+  --hdr:74px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--navy);color:var(--ink);font-family:var(--body);
+     font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.025em;line-height:1.04}
+p{margin:0}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:.72rem;
+         letter-spacing:.18em;text-transform:uppercase}
+
+/* photo-backed section: image + navy wash, never a flat colour block */
+.photobg{position:relative;isolation:isolate;overflow:hidden}
+.photobg > img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero > img.bg{object-position:center 72%}
+.photobg::after{content:"";position:absolute;inset:0;z-index:-1}
+
+.stripes{height:9px;background:repeating-linear-gradient(90deg,var(--lime) 0 26px,#5E9105 26px 52px)}
+.stripes--quiet{height:7px;background:repeating-linear-gradient(90deg,var(--line) 0 26px,var(--paper) 26px 52px)}
+
+/* header */
+/* Arcadia-style bar: a blurred layer that reaches past the bar and is masked
+   so the blur itself dissolves into the photograph. Goes solid navy once you
+   scroll off the hero, or the links would vanish against the white sections. */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:transparent;
+       border-bottom:0;transition:background .3s ease,border-color .3s ease}
+header::before{content:"";position:absolute;left:0;right:0;top:0;height:calc(100% + 30px);
+  z-index:-1;pointer-events:none;transition:opacity .3s ease;
+  background:linear-gradient(180deg,rgba(5,20,38,.58) 0%,rgba(5,20,38,.34) 62%,rgba(5,20,38,0) 100%);
+  -webkit-backdrop-filter:blur(14px) saturate(1.1);backdrop-filter:blur(14px) saturate(1.1);
+  -webkit-mask-image:linear-gradient(180deg,#000 60%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 60%,transparent 100%)}
+header .navrow{text-shadow:0 2px 10px rgba(3,14,27,.85)}
+header .btn--lime{text-shadow:none}
+header.solid{background:var(--navy);border-bottom:1px solid rgba(144,218,10,.25)}
+header.solid::before{opacity:0}
+header.solid .navrow{text-shadow:none}
+.navrow{display:flex;align-items:center;gap:22px;padding-block:11px}
+.navrow .logo{height:52px;width:auto;margin-right:auto}
+.navlinks{display:flex;gap:26px;align-items:center}
+.navlinks a{color:#C6D4E0;text-decoration:none;font-weight:600;font-size:.92rem}
+.navlinks a:hover{color:var(--lime)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+     font-family:var(--display);font-weight:800;font-size:.95rem;padding:13px 22px;
+     border-radius:3px;text-decoration:none;border:0;cursor:pointer;
+     transition:transform .12s ease,background .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn--lime{background:var(--lime);color:var(--navy)}
+.btn--lime:hover{background:var(--lime-2)}
+.btn--ghost{background:rgba(255,255,255,.07);color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+.btn--ghost:hover{border-color:var(--lime);color:var(--lime)}
+.btn--navy{background:var(--navy);color:#fff}
+.btn--lg{padding:17px 30px;font-size:1.06rem}
+
+/* hero */
+.hero{color:#fff;text-align:center;margin-top:calc(-1 * var(--hdr));padding-top:var(--hdr)}
+.hero::after{background:
+  linear-gradient(180deg,rgba(7,29,54,.92) 0%,rgba(7,29,54,.80) 45%,rgba(7,29,54,.95) 100%)}
+.hero .wrap{padding-block:clamp(44px,6vw,74px) clamp(40px,5vw,62px)}
+.hero .logo{width:clamp(230px,30vw,360px);margin:0 auto clamp(20px,2.6vw,30px)}
+.hero .eyebrow{color:var(--lime);margin-bottom:16px}
+h1{font-size:clamp(2.35rem,5.6vw,4.35rem);font-weight:900;max-width:17ch;margin-inline:auto}
+h1 em{font-style:normal;color:var(--lime)}
+.hero-sub{margin:22px auto 0;max-width:54ch;color:#D5E0EA;font-size:1.1rem;line-height:1.65}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;justify-content:center}
+.badges{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:center;margin-top:34px;
+        padding-top:26px;border-top:1px solid rgba(255,255,255,.16)}
+.badges div{display:flex;align-items:center;gap:9px;color:#D5E0EA;
+            font-family:var(--display);font-weight:600;font-size:.85rem}
+.badges svg{flex:none;color:var(--lime)}
+
+/* generic */
+section{padding-block:clamp(60px,8vw,100px)}
+.light{background:var(--paper);color:var(--ink)}
+.sec-head{max-width:62ch}
+.sec-head h2{font-size:clamp(1.95rem,3.9vw,3.05rem);font-weight:800;margin-top:14px}
+.sec-head p{margin-top:16px;font-size:1.06rem;max-width:56ch}
+.light .sec-head .eyebrow{color:#5E9105}
+.light .sec-head p{color:var(--slate)}
+.on-photo{color:#fff}
+.on-photo .eyebrow{color:var(--lime)}
+.on-photo h2{color:#fff}
+.on-photo p{color:#D5E0EA}
+.center{text-align:center;margin-inline:auto}
+
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:46px;background:var(--line)}
+.svc{background:var(--white);padding:30px 26px 32px;min-width:0}
+.svc-stripe{height:5px;width:46px;background:repeating-linear-gradient(90deg,var(--lime) 0 9px,#5E9105 9px 18px)}
+.svc h3{font-size:1.2rem;font-weight:800;margin-top:18px}
+.svc p{margin-top:10px;color:var(--slate);font-size:.97rem;line-height:1.6}
+.scope{margin-top:34px;border-left:3px solid var(--lime);padding:16px 0 16px 20px;
+       max-width:62ch;color:var(--slate);font-size:1rem}
+.scope b{color:var(--ink);font-family:var(--display);font-weight:800}
+
+/* work */
+.work::after{background:linear-gradient(180deg,rgba(7,29,54,.93),rgba(7,29,54,.88))}
+.shots{display:grid;grid-template-columns:1.35fr 1fr;gap:22px;margin-top:46px}
+.shot{position:relative;min-width:0;border-radius:4px;overflow:hidden;
+      border:1px solid rgba(144,218,10,.25)}
+.shot img{width:100%;height:100%;min-height:355px;object-fit:cover}
+.shot figcaption{position:absolute;inset:auto 0 0 0;padding:48px 22px 20px;color:#fff;
+  background:linear-gradient(to top,rgba(5,20,38,.95),rgba(5,20,38,0));font-size:.95rem;line-height:1.5}
+.shot figcaption b{font-family:var(--display);font-weight:800;display:block;font-size:1.06rem;margin-bottom:3px}
+
+/* about */
+.about::after{background:linear-gradient(100deg,rgba(7,29,54,.96) 42%,rgba(7,29,54,.80))}
+.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,66px);align-items:center}
+.about p+p{margin-top:17px}
+.about p{color:#C8D6E2;font-size:1.05rem}
+.about p.lead{color:#fff;font-size:1.24rem;font-weight:500;line-height:1.55}
+.photoslot{border:1.5px dashed rgba(144,218,10,.5);border-radius:4px;background:rgba(255,255,255,.05);
+  height:clamp(290px,33vw,415px);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;gap:11px;padding:30px;color:#C8D6E2}
+.photoslot svg{color:var(--lime)}
+.photoslot b{font-family:var(--display);font-weight:800;color:#fff;font-size:1.06rem;max-width:24ch}
+.photoslot span{font-size:.92rem;line-height:1.55;max-width:36ch}
+
+/* reviews */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+.rev{border:1.5px dashed var(--line);border-radius:4px;padding:26px 22px;background:var(--white);
+     color:var(--slate);font-size:.95rem;min-height:148px;display:flex;flex-direction:column;
+     justify-content:center;gap:8px}
+.rev b{font-family:var(--display);font-weight:800;color:var(--ink);font-size:.95rem}
+.stars{color:#5E9105;letter-spacing:.14em;font-size:.9rem}
+
+/* quote */
+.quote::after{background:linear-gradient(180deg,rgba(7,29,54,.95),rgba(7,29,54,.90))}
+.quote-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,64px);align-items:start}
+.q-points{margin-top:26px;display:flex;flex-direction:column;gap:12px}
+.q-points div{display:flex;gap:11px;align-items:flex-start;color:#D5E0EA;font-size:.98rem}
+.q-points svg{flex:none;margin-top:4px;color:var(--lime)}
+.phone-link{font-family:var(--display);font-weight:900;font-size:1.5rem;color:#fff;
+            text-decoration:none;letter-spacing:-.02em;white-space:nowrap;display:inline-block}
+.phone-link span{display:block;font-size:.62rem;letter-spacing:.2em;color:var(--lime);font-weight:700;margin-bottom:3px}
+form{background:var(--white);color:var(--ink);padding:clamp(24px,3.4vw,34px);border-radius:4px}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:17px}
+label{font-family:var(--display);font-weight:700;font-size:.74rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--slate)}
+input[type=text],input[type=tel]{font-family:var(--body);font-size:1rem;padding:13px 14px;
+  border:1.5px solid var(--line);border-radius:3px;background:var(--paper);color:var(--ink);width:100%}
+input:focus{border-color:#5E9105;outline:none}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:9px 16px;margin-top:4px}
+.check{display:flex;align-items:center;gap:9px;font-size:.95rem;cursor:pointer}
+.check input{accent-color:#5E9105;width:17px;height:17px;flex:none}
+.form-note{margin-top:14px;font-size:.84rem;color:var(--slate);line-height:1.5}
+.sent{display:none;background:var(--navy-2);color:#fff;padding:28px;border-radius:4px;text-align:center;
+      border:1px solid rgba(144,218,10,.35)}
+.sent b{font-family:var(--display);font-weight:800;font-size:1.22rem;display:block;margin-bottom:8px}
+.sent span{color:#D5E0EA;font-size:.97rem;line-height:1.55}
+
+/* footer */
+footer{background:var(--navy);color:#C8D6E2;padding-block:52px 38px;
+       border-top:1px solid rgba(144,218,10,.22)}
+.foot-grid{display:flex;flex-wrap:wrap;gap:36px;justify-content:space-between;align-items:flex-start}
+.foot-grid .logo{width:230px}
+.foot-svc{display:flex;flex-wrap:wrap;gap:7px 18px;max-width:420px;font-size:.93rem}
+.foot-base{margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.13);
+  display:flex;flex-wrap:wrap;gap:12px 26px;font-size:.84rem;color:#8FA4B8}
+
+/* demo ribbon */
+.demo{background:var(--lime);color:var(--navy);font-size:.82rem;line-height:1.45}
+.demo .wrap{padding-block:9px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.demo b{font-family:var(--display);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem}
+
+@media (max-width:900px){
+  .about-grid,.quote-grid,.shots{grid-template-columns:1fr}
+  .svc-grid,.rev-grid{grid-template-columns:repeat(2,1fr)}
+  .navlinks{display:none}
+  .navrow .logo{height:44px}
+  :root{--hdr:66px}
+}
+@media (max-width:560px){
+  .svc-grid,.rev-grid,.checks{grid-template-columns:1fr}
+  body{font-size:16px}
+  .foot-grid .logo{width:190px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="demo"><div class="wrap">
+  <b>Design concept</b>
+  <span>Built for McRae Yard Maintenance by Plumline. Photography is representative &mdash; Roi&rsquo;s own job photos replace it before launch.</span>
+</div></div>
+
+<header>
+  <div class="wrap navrow">
+    <a href="#top"><img class="logo" src="img/logo.png" alt="McRae Yard Maintenance"></a>
+    <nav class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#work">The Finish</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="btn btn--lime" href="#quote">Get a free quote</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero photobg">
+  <img class="bg" src="img/driveway.jpg" alt="">
+  <div class="wrap">
+    <img class="logo" src="img/logo.png" alt="McRae Yard Maintenance">
+    <p class="eyebrow">Residential lawn care &middot; Eastern North Carolina</p>
+    <h1>Your yard, handled. <em>Every single week.</em></h1>
+    <p class="hero-sub">Mowing, edging, mulch, hedges and cleanups for homeowners across the 910.
+      Owner-operated, so the person who quotes your yard is the person who takes care of it.</p>
+    <div class="hero-cta">
+      <a class="btn btn--lime btn--lg" href="#quote">Get my free quote</a>
+      <a class="btn btn--ghost btn--lg" href="tel:+19107736069">Call (910) 773-6069</a>
+    </div>
+    <div class="badges">
+      <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Owner-operated</div>
+      <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Free quotes</div>
+      <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Call or text, same-day reply</div>
+      <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Weekly &amp; biweekly schedules</div>
+    </div>
+  </div>
+</section>
+<div class="stripes"></div>
+
+<section class="light" id="services">
+  <div class="wrap">
+    <div class="sec-head center" style="text-align:center">
+      <p class="eyebrow">What we do</p>
+      <h2>Full yard maintenance, start to finish.</h2>
+      <p style="margin-inline:auto">Everything that keeps a property looking cared for, on a
+         schedule you never have to chase.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc"><div class="svc-stripe"></div><h3>Weekly &amp; biweekly mowing</h3>
+        <p>Cut at the right height for the season so the lawn holds colour instead of burning off.
+           Straight lines, no scalped corners.</p></div>
+      <div class="svc"><div class="svc-stripe"></div><h3>Edging &amp; trimming</h3>
+        <p>Crisp lines along drives, walks and beds. String-trimmed around fences, posts and
+           anywhere the mower can&rsquo;t reach.</p></div>
+      <div class="svc"><div class="svc-stripe"></div><h3>Blowing &amp; cleanup</h3>
+        <p>Drives, walks and porches blown clean before we leave. You should not be able to tell
+           where the truck parked.</p></div>
+      <div class="svc"><div class="svc-stripe"></div><h3>Mulch spreading</h3>
+        <p>Laid even at the right depth and pulled back off the stems, so beds look sharp and the
+           plants stay healthy.</p></div>
+      <div class="svc"><div class="svc-stripe"></div><h3>Bush &amp; hedge trimming</h3>
+        <p>Shrubs shaped and thinned on a schedule that keeps them full, instead of letting them
+           go woody and bare at the base.</p></div>
+      <div class="svc"><div class="svc-stripe"></div><h3>Weeding &amp; bed upkeep</h3>
+        <p>Beds pulled by hand and kept that way, so you&rsquo;re not looking at the same weeds
+           again in two weeks.</p></div>
+    </div>
+    <p class="scope"><b>What we don&rsquo;t do:</b> patios, retaining walls and hardscape. We&rsquo;d
+      rather do lawns properly than do everything halfway &mdash; and if you need that work, we&rsquo;ll
+      tell you who to call.</p>
+  </div>
+</section>
+
+<section class="work photobg on-photo" id="work">
+  <img class="bg" src="img/mower.jpg" alt="">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The finish</p>
+      <h2>You can see the difference from the street.</h2>
+      <p>Anyone can cut grass. The finish is the edge along the walk, the blown-off driveway and the
+         bed line that still looks sharp a week later.</p>
+    </div>
+    <div class="shots">
+      <figure class="shot">
+        <img src="img/mower.jpg" alt="A mown lawn with clean stripes, trimmed shrubs and freshly mulched beds">
+        <figcaption><b>Mow, trim, mulch</b>The whole property handled in one visit, not spread across three.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/garden.jpg" alt="A flower bed with a cut edge, trimmed hedge behind it and mown lawn in front">
+        <figcaption><b>Beds and edges</b>A cut edge is what separates a maintained yard from a mown one.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="about photobg on-photo" id="about">
+  <img class="bg" src="img/garden.jpg" alt="">
+  <div class="wrap about-grid">
+    <div>
+      <p class="eyebrow">About</p>
+      <h2>The person who quotes it is the person who cuts it.</h2>
+      <p class="lead" style="margin-top:20px">No call centre, no rotating crew, no explaining your
+        property to somebody new in July.</p>
+      <p>With a big outfit you get whoever was free that morning, and the person who walked your
+         yard in spring isn&rsquo;t the one standing in it mid-season. Here nothing gets handed off
+         and nothing gets lost in translation. You have a direct number, and it&rsquo;s answered.</p>
+      <p>That consistency is the whole point. The same hands on the same property week after week
+         is how a yard starts looking deliberately kept instead of merely cut.</p>
+      <div class="hero-cta" style="justify-content:flex-start;margin-top:30px">
+        <a class="btn btn--lime btn--lg" href="#quote">Get my free quote</a>
+      </div>
+    </div>
+    <div class="photoslot">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="6" width="20" height="14" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6l1.6-2.4h4.8L16 6"/>
+      </svg>
+      <b>A photo of Roi and his truck goes here.</b>
+      <span>People hire the person, not the logo. One good shot of the owner beside the equipment
+        does more for trust than anything else on the page.</span>
+    </div>
+  </div>
+</section>
+
+<section class="light">
+  <div class="wrap">
+    <div class="sec-head center" style="text-align:center">
+      <p class="eyebrow">What neighbours say</p>
+      <h2>Reviews from people down the road.</h2>
+      <p style="margin-inline:auto">Real reviews drop in here, pulled straight from the Google
+        Business Profile so they keep themselves current.</p>
+    </div>
+    <div class="rev-grid">
+      <div class="rev"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><b>Review slot</b>Customer review and first name land here.</div>
+      <div class="rev"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><b>Review slot</b>Customer review and first name land here.</div>
+      <div class="rev"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><b>Review slot</b>Customer review and first name land here.</div>
+    </div>
+  </div>
+</section>
+
+<section class="quote photobg on-photo" id="quote">
+  <img class="bg" src="img/crew.jpg" alt="">
+  <div class="wrap quote-grid">
+    <div>
+      <p class="eyebrow">Free quote</p>
+      <h2>Tell us about your yard.</h2>
+      <p style="margin-top:16px;max-width:44ch;font-size:1.06rem">Takes a minute. We&rsquo;ll come
+        look at it, and you&rsquo;ll have a price without anyone trying to sell you anything.</p>
+      <div class="q-points">
+        <div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>No charge and no obligation</div>
+        <div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>A real price, not a range</div>
+        <div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Usually back to you the same day</div>
+      </div>
+      <p style="margin-top:30px">
+        <a class="phone-link" href="tel:+19107736069"><span>Rather just call?</span>(910) 773-6069</a>
+      </p>
+    </div>
+    <div>
+      <form id="quoteForm" novalidate>
+        <div class="field"><label for="qname">Your name</label>
+          <input type="text" id="qname" autocomplete="name" required></div>
+        <div class="field"><label for="qphone">Phone</label>
+          <input type="tel" id="qphone" autocomplete="tel" required></div>
+        <div class="field"><label for="qaddr">Property address</label>
+          <input type="text" id="qaddr" autocomplete="street-address" required></div>
+        <div class="field"><label>What do you need?</label>
+          <div class="checks">
+            <label class="check" for="s1"><input type="checkbox" id="s1" checked> Mowing</label>
+            <label class="check" for="s2"><input type="checkbox" id="s2"> Edging &amp; trimming</label>
+            <label class="check" for="s3"><input type="checkbox" id="s3"> Mulch</label>
+            <label class="check" for="s4"><input type="checkbox" id="s4"> Bush trimming</label>
+            <label class="check" for="s5"><input type="checkbox" id="s5"> Weeding</label>
+            <label class="check" for="s6"><input type="checkbox" id="s6"> Cleanup</label>
+          </div></div>
+        <button class="btn btn--lime btn--lg" type="submit" style="width:100%">Send my request</button>
+        <p class="form-note">On the live site this arrives on Roi&rsquo;s phone as a text the second
+          it&rsquo;s sent &mdash; no inbox to check, no lead sitting overnight.</p>
+      </form>
+      <div class="sent" id="sent">
+        <b>That&rsquo;s how it works.</b>
+        <span>This is a design concept, so nothing was actually sent. On the live site this request
+          would already be on Roi&rsquo;s phone.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="logo" src="img/logo.png" alt="McRae Yard Maintenance" style="margin-bottom:18px">
+        <a class="phone-link" href="tel:+19107736069"><span>Call or text</span>(910) 773-6069</a>
+        <p style="margin-top:10px;font-size:.92rem">Free quotes, no pressure.</p>
+      </div>
+      <div>
+        <p class="eyebrow" style="color:var(--lime);margin-bottom:12px">Services</p>
+        <div class="foot-svc">
+          <span>Mowing</span><span>Edging</span><span>Trimming</span><span>Blowing</span>
+          <span>Mulch spreading</span><span>Bush trimming</span><span>Hedge trimming</span>
+          <span>Weeding</span><span>Bed maintenance</span><span>Seasonal cleanups</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 McRae Yard Maintenance</span>
+      <span>Residential lawn care &middot; Eastern North Carolina</span>
+      <span>Site by Plumline</span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LandscapingBusiness",
+  "name":"McRae Yard Maintenance",
+  "description":"Owner-operated residential lawn and yard maintenance in eastern North Carolina: mowing, edging, trimming, blowing, mulch spreading, bush and hedge trimming, and weeding.",
+  "telephone":"+1-910-773-6069",
+  "priceRange":"$$",
+  "areaServed":{"@type":"State","name":"North Carolina"},
+  "address":{"@type":"PostalAddress","addressRegion":"NC","addressCountry":"US"},
+  "knowsAbout":["Lawn mowing","Lawn edging","String trimming","Leaf blowing","Mulch installation","Bush trimming","Hedge trimming","Weed removal","Flower bed maintenance"],
+  "makesOffer":[
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Weekly and biweekly lawn mowing"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Edging and string trimming"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Blowing and property cleanup"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Mulch spreading"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Bush and hedge trimming"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Weeding and bed maintenance"}}
+  ]
+}
+</script>
+
+<script>
+(function(){
+  var hdr=document.querySelector('header');
+  var onScroll=function(){ hdr.classList.toggle('solid', window.scrollY > 90); };
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+})();
+(function(){
+  var form=document.getElementById('quoteForm'),sent=document.getElementById('sent');
+  if(!form)return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();form.hidden=true;sent.style.display='block';
+    sent.setAttribute('tabindex','-1');sent.focus();
+  });
+})();
+</script>
