@@ -223,6 +223,31 @@ footer{background:var(--navy);color:#C8D6E2;padding-block:50px 36px;border-top:1
   body{font-size:16px}
   .foot-grid .logo{width:190px}
   .photoslot{flex-direction:column;gap:10px}
+
+  /* The notice was eating the whole first screen on a phone. */
+  .demo{font-size:.74rem;line-height:1.4}
+  .demo .wrap{padding-block:8px;gap:3px}
+  .demo b{font-size:.66rem}
+
+  /* Hero: smaller mark, a headline that breaks where it is written to break,
+     and full-width buttons that are easy to hit with a thumb. */
+  .hero .wrap{padding-block:26px 34px}
+  .hero .logo{width:min(62vw,240px);margin-bottom:18px}
+  .hero .eyebrow{font-size:.58rem;letter-spacing:.1em;margin-bottom:12px}
+  h1{font-size:clamp(2rem,8.6vw,2.7rem);max-width:none}
+  h1 em{display:block}
+  .hero-sub{font-size:1rem;line-height:1.52;margin-top:16px}
+  .hero-cta{flex-direction:column;align-items:stretch;gap:10px;margin-top:24px}
+  .hero-cta .btn{width:100%;padding:15px 20px}
+  .badges{margin-top:24px;padding-top:18px;gap:9px;justify-content:flex-start;text-align:left}
+  .badges div{width:100%;font-size:.8rem}
+
+  /* Thumb-sized checkboxes in the quote form. */
+  .check{min-height:42px}
+  .check input{width:20px;height:20px}
+
+  header .btn{padding:11px 15px;font-size:.86rem}
+  .navrow .logo{height:40px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
